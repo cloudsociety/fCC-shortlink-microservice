@@ -1,0 +1,24 @@
+{
+  "name": "fcc-shortlink-microservice",
+  "version": "1.0.0",
+  "description": "An fCC back-end dev challenge.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha **/*.test.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Dave Cross",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "expect": "^1.20.2",
+    "mocha": "^3.4.2",
+    "supertest": "^3.0.0"
+  },
+  "engines":{
+    "node": "8.0.0"
+  }
+}
