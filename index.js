@@ -1,4 +1,6 @@
 var express = require('express');
+var shortid = require('shortid');
+var _ = require('lodash');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,16 +18,27 @@ app.get('/new/*', (req,res) => {
   // either url encode before submit or data-munge the original url.
   // I used #2
   var original_url = req.originalUrl.slice(5); //get just the param
-  console.log(original_url);
-  // res.send('sure');
-  var shortlink = new Link({
-    original_url
-  });
-  shortlink.save().then((doc) => {
-    res.send(doc);
+
+  // get full URL before path
+  var fullUrl = req.protocol + '://' + req.get('host');
+
+  Link.findByURL(original_url).then((link) => {
+    // does exist. Resend it.
+    res.send(link.toJSON(fullUrl));
   }, (e) => {
-    res.status(400).send({error: 'url not valid'});
-  })
+    // doesn't exist. Let's make it.
+    var shortlink = new Link({
+      _id: shortid.generate(),
+      original_url
+    }).save().then((doc) => {
+      // push it back to user.
+      res.send(doc.toJSON(fullUrl));
+    }, (e) => {
+      // not a valid url.
+      res.status(400).send({error: 'url not valid'});
+    })
+  });
+
 });
 
 app.get('/:shortid', (req,res) => {
