@@ -11,14 +11,18 @@
   "author": "Dave Cross",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "lodash": "^4.17.4",
+    "mongodb": "^2.2.29",
+    "mongoose": "^4.11.1",
+    "validator": "^7.2.0"
   },
   "devDependencies": {
     "expect": "^1.20.2",
     "mocha": "^3.4.2",
     "supertest": "^3.0.0"
   },
-  "engines":{
+  "engines": {
     "node": "8.0.0"
   }
 }
