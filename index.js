@@ -1,9 +1,10 @@
+require('./config/config.js');
+
 var express = require('express');
 var shortid = require('shortid');
 var _ = require('lodash');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 // database
 var {mongoose} = require('./db/mongoose.js');
@@ -53,8 +54,8 @@ app.get('/:shortid', (req,res) => {
 });
 
 
-app.listen(PORT, function () {
-  console.log(`Express server is up on port ${PORT}`);
+app.listen(process.env.PORT, function () {
+  console.log(`Express server is up on port ${process.env.PORT}`);
 });
 
 

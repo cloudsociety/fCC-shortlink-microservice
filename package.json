@@ -4,7 +4,7 @@
   "description": "An fCC back-end dev challenge.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha **/*.test.js",
+    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha **/*.test.js",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
