@@ -42,7 +42,14 @@ app.get('/new/*', (req,res) => {
 });
 
 app.get('/:shortid', (req,res) => {
-  res.send('id works');
+  Link.findOne({
+    _id: req.params.shortid,
+  }).then((todo) => {
+    if (!todo) {return res.status(404).send('Oops. No URL found here.');}
+    res.redirect(todo.original_url);
+  }, (e) => {
+    res.status(400).send();
+  });
 });
 
 
